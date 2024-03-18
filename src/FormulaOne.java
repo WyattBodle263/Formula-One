@@ -66,10 +66,10 @@ public class FormulaOne {
         trackMatrix = new Vector<Vector<Vector<Integer>>>();
 
         try {
-            background = ImageIO.read(new File("MiamiTransparent.png"));
-            player = ImageIO.read(new File("steeringWheelSmall.png"));
+            background = ImageIO.read(new File("city.png"));
+            player = ImageIO.read(new File("steeringWheel.png"));
             cockpit = ImageIO.read(new File("cockpit.png"));
-            track = ImageIO.read(new File("trackchessboard.png"));
+            track = ImageIO.read(new File("track.png"));
             perspectiveTrack = convertToARGB(ImageIO.read(new File("perspectiveTrack.png")));
 
 
@@ -200,8 +200,8 @@ public class FormulaOne {
         trackMatrix = splitColors(track);
     }
 
-    private static AffineTransformOp rotateImageObject(ImageIO obj) {
-        AffineTransform at = AffineTransform.getRotateInstance(-obj.getAngle(), obj.getWidth() / 2.0, obj.getheight() / 2.0);
+    private static AffineTransformOp rotateImageObject(ImageObject obj) {
+        AffineTransform at = AffineTransform.getRotateInstance(-obj.getAngle(), obj.getWidth() / 2.0, obj.getHeight() / 2.0);
         AffineTransformOp atop = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
         return atop;
     }
@@ -477,7 +477,7 @@ private static class StartGame implements ActionListener{
             leftPressed = false;
             rightPressed = false;
 
-            p1 = new ImageObject(p1originalX, p1originalY, p1width, p1height, 0,0);
+            p1 = new ImageObject(p1originalX, p1originalY, p1width, p1height, 0.0);
             p1velocity = 0.0;
             camerax = 0;
             cameray = 0;
@@ -486,7 +486,7 @@ private static class StartGame implements ActionListener{
                 Thread.sleep(50);
             } catch(InterruptedException ie){}
 
-            setUpTrack();
+            setupTrack();
             endgame = false;
             Thread t1 = new Thread(new Animate());
             Thread t2 = new Thread(new PlayerMover());
@@ -521,7 +521,7 @@ private static class ImageObject{
             return y;
         }
 
-        public double getWidht(){
+        public double getWidth(){
             return xwidth;
         }
 
@@ -733,8 +733,5 @@ private static void bindKey(JPanel myPanel, String input){
     private static JFrame appFrame;
 
     private static final int IFW = JComponent.WHEN_IN_FOCUSED_WINDOW;
-
-
-
 }
 
