@@ -42,6 +42,8 @@ public class FormulaOne {
     }
 
     public static void setup() {
+        appFrame = new JFrame("Formula One");
+
         XOFFSET = 0;
         YOFFSET = 40;
         WINWIDTH = 500;
@@ -380,22 +382,22 @@ public class FormulaOne {
                 int blue = userView.elementAt(i).elementAt(j).elementAt(2);
 
                 while(red < 0){
-                    red += 256;
+                    red = red + 256;
                 }
                 while(256 <= red){
-                    red -= 256;
+                    red = red - 256;
                 }
                 while(green < 0){
-                    green += 256;
+                    green = green +  256;
                 }
                 while(256 <= green){
-                    green -= 256;
+                    green = green - 256;
                 }
                 while(blue < 0){
-                    blue += 256;
+                    blue = blue+  256;
                 }
                 while(256 <= blue){
-                    blue -= 256;
+                    blue = blue - 256;
                 }
 
                 Color myColor = new Color(red, green, blue);
