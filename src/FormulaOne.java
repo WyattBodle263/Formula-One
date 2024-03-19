@@ -42,6 +42,8 @@ public class FormulaOne {
     }
 
     public static void setup() {
+        appFrame = new JFrame("Formula One");
+
         XOFFSET = 0;
         YOFFSET = 40;
         WINWIDTH = 500;
@@ -380,22 +382,22 @@ public class FormulaOne {
                 int blue = userView.elementAt(i).elementAt(j).elementAt(2);
 
                 while(red < 0){
-                    red += 256;
+                    red = red + 256;
                 }
                 while(256 <= red){
-                    red -= 256;
+                    red = red - 256;
                 }
                 while(green < 0){
-                    green += 256;
+                    green = green + 256;
                 }
                 while(256 <= green){
-                    green -= 256;
+                    green = green - 256;
                 }
                 while(blue < 0){
-                    blue += 256;
+                    blue = blue + 256;
                 }
                 while(256 <= blue){
-                    blue -= 256;
+                    blue = blue - 256;
                 }
 
                 Color myColor = new Color(red, green, blue);
@@ -413,7 +415,7 @@ public class FormulaOne {
         g2D.drawImage(rotateImageObject(p1).filter(player, null), (int)(p1.getX() + 0.5), (int)(p1.getY() + 0.5), null);
     }
 
-private static class KeyPressed extends AbstractAction{
+    private static class KeyPressed extends AbstractAction{
         public KeyPressed(){
             action = "";
         }
@@ -436,40 +438,40 @@ private static class KeyPressed extends AbstractAction{
             }
         }
         private String action;
-}
-
-private static class KeyReleased extends AbstractAction{
-    public KeyReleased(){
-        action = "";
-    }
-    public KeyReleased(String input){
-        action = input;
     }
 
-    public void actionPerformed(ActionEvent e){
-        if(action.equals("UP")){
-            upPressed = false;
+    private static class KeyReleased extends AbstractAction{
+        public KeyReleased(){
+            action = "";
         }
-        if(action.equals("DOWN")){
-            downPressed = false;
+        public KeyReleased(String input){
+            action = input;
         }
-        if(action.equals("LEFT")){
-            leftPressed = false;
-        }
-        if(action.equals("RIGHT")){
-            rightPressed = false;
-        }
-    }
-    private String action;
-}
 
-private static class QuitGame implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            if(action.equals("UP")){
+                upPressed = false;
+            }
+            if(action.equals("DOWN")){
+                downPressed = false;
+            }
+            if(action.equals("LEFT")){
+                leftPressed = false;
+            }
+            if(action.equals("RIGHT")){
+                rightPressed = false;
+            }
+        }
+        private String action;
+    }
+
+    private static class QuitGame implements ActionListener{
         public void actionPerformed(ActionEvent e){
             endgame = true;
         }
-}
+    }
 
-private static class StartGame implements ActionListener{
+    private static class StartGame implements ActionListener{
         public void actionPerformed(ActionEvent e){
             endgame = true;
             upPressed = false;
@@ -496,9 +498,9 @@ private static class StartGame implements ActionListener{
             t2.start();
             t3.start();
         }
-}
+    }
 
-private static class ImageObject{
+    private static class ImageObject{
         public ImageObject(){
         }
 
@@ -656,15 +658,15 @@ private static class ImageObject{
         private double comY;
         private Vector<Double> coords;
         private Vector<Double> triangles;
-}
+    }
 
-private static void bindKey(JPanel myPanel, String input){
+    private static void bindKey(JPanel myPanel, String input){
         myPanel.getInputMap(IFW).put(KeyStroke.getKeyStroke("pressed " + input), input + " pressed");
         myPanel.getActionMap().put(input + " pressed", new KeyPressed(input));
 
         myPanel.getInputMap(IFW).put(KeyStroke.getKeyStroke("released " + input), input + " released");
         myPanel.getActionMap().put(input + " released", new KeyReleased(input));
-}
+    }
 
     public static void main(String[] args){
         setup();
@@ -734,4 +736,3 @@ private static void bindKey(JPanel myPanel, String input){
 
     private static final int IFW = JComponent.WHEN_IN_FOCUSED_WINDOW;
 }
-
