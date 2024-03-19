@@ -388,13 +388,21 @@ public class FormulaOne {
                     red = red - 256;
                 }
                 while(green < 0){
+<<<<<<< HEAD
                     green = green + 256;
+=======
+                    green = green +  256;
+>>>>>>> 12a601894988b5ee42f16798a21bbe78033fedae
                 }
                 while(256 <= green){
                     green = green - 256;
                 }
                 while(blue < 0){
+<<<<<<< HEAD
                     blue = blue + 256;
+=======
+                    blue = blue+  256;
+>>>>>>> 12a601894988b5ee42f16798a21bbe78033fedae
                 }
                 while(256 <= blue){
                     blue = blue - 256;
